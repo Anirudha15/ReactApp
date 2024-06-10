@@ -3,18 +3,27 @@ import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
 
 const Chat = () => {
+  // const [chat,setChat] = useState();
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
 
-  const endRef = useRef(null)
+  const endRef = useRef(null);
+
   useEffect(()=>{
     endRef.current?.scrollIntoView({behavior: "smooth"});
   },[])
+
+  // useEffect(()=>{
+  //   const unSub = onSnapshot(doc(db,"chats","mnB8mCLF738Y7fFkO6Pp"),(res)=>{
+
+  //   })
+  // },[])
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
     setOpen(false);
   };
+
   return (
     <div className="chat">
       <div className="top">
