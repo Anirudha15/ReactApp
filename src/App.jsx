@@ -7,13 +7,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./lib/firebase";
 import { useEffect } from "react";
 import { useUserStore } from "./lib/userStore";
+import { useChatStore } from "./lib/chatStore";
 // import { useEffect } from "react";
 
 // import { useEffect } from "react";
 
 
 const App = () =>{
-  const {currentUser,isLoading,fetchUserInfo} = useUserStore()
+  const {currentUser,isLoading,fetchUserInfo} = useUserStore();
+  const {chatId} = useChatStore();
 
   
   // fetching imformation of log user from firebase
@@ -43,8 +45,8 @@ const App = () =>{
       {currentUser ? (
         <>
           <List/>
-          <Chat/>
-          <Detail/>
+          {chatId && <Chat/>}
+          {chatId && <Detail/>}
         </>       
       ) : (
         <Login/>
